@@ -1,7 +1,23 @@
+<h2>勤怠連絡メールを作成しました！</h2>
+<p>
+  注意！：勤怠連絡表の添付を忘れずに！！<br>
+  勤怠連絡表は以下のリンクよりダウンロードできます。<br>
+
+<!-- まだダウンロード未対応です。 -->
+  <button><a href="#">ダウンロード</a></button>
+
+</p>
+
+<?php
+$date = $_POST['date'];
+$dateType1 = str_replace("-",'',$date);
+$dateType2 = str_replace("-",'/',$date);
+?>
+
 
 <!--件名を表示-->
 <h2>＜件名＞</h2>
-【勤怠連絡】<?php echo $_POST['type']."_".$_POST['date']."_".$_POST['department']."_".$_POST['name'];?>
+【勤怠連絡】<?php echo $_POST['type']."_".$dateType1."_".$_POST['department']."_".$_POST['name'];?>
 
 <!-- 本文を表示 -->
 <h2><本文></h2>
@@ -14,7 +30,7 @@
 部署：<?php echo $_POST['department'] ;?><br>
 氏名：<?php echo $_POST['name'] ;?><br>
 取得種類：<?php echo $_POST['type'] ;?><br>
-取得日：<?php echo $_POST['date'] ;?><br>
+取得日：<?php echo $dateType2 ;?><br>
 理由：<?php echo $_POST['reason'] ;?><br><br>
 ————————————<br>
 <br>
