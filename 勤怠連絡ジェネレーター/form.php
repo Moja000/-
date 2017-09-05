@@ -9,9 +9,17 @@
 </p>
 
 <?php
+// フォームから取得した日時を$dateに代入。
 $date = $_POST['date'];
+// 日時をYYYYMMDDフォーマットに変換
 $dateType1 = str_replace("-",'',$date);
+// 日時をYYYY/MM/DDフォーマットに変換
 $dateType2 = str_replace("-",'/',$date);
+
+//HTMLインジェックションを無効化
+function Reciver($value){
+  echo htmlspecialchars($value);
+}
 ?>
 
 
@@ -26,12 +34,13 @@ $dateType2 = str_replace("-",'/',$date);
 お疲れ様です。<?php echo $_POST['department'] ;?>の<?php echo $_POST['name'] ;?>です。<br>
 以下の内容で勤怠連絡をさせて頂きます。<br>
 <br>
+
 ————————————<br>
-部署：<?php echo $_POST['department'] ;?><br>
-氏名：<?php echo $_POST['name'] ;?><br>
-取得種類：<?php echo $_POST['type'] ;?><br>
-取得日：<?php echo $dateType2 ;?><br>
-理由：<?php echo $_POST['reason'] ;?><br><br>
+部署：<?php Reciver($_POST['department']);?><br>
+氏名：<?php Reciver($_POST['name']) ;?><br>
+取得種類：<?php Reciver($_POST['type']) ;?><br>
+取得日：<?php Reciver($dateType2) ;?><br>
+理由：<?php Reciver($_POST['reason']) ;?><br><br>
 ————————————<br>
 <br>
 本メールに勤怠連絡表を添付致しました。お手数ですが、ご確認をお願い致します。<br>
