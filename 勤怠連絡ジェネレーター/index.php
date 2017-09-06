@@ -11,7 +11,15 @@
   自動的に勤怠連絡メールの件名、本文を作成します。
 </p>
 <br>
-
+<?php
+//所属チームを配列で呼び出し。
+$department = array("所属チームを選択してください","ES1", "ES2", "ES3", "TF1","TF2","TF3");
+//申請種類を配列で呼び出し。
+$type = array("連絡種別を選択してください","１日有給","時間有給","遅刻","早退","欠勤","有事遅刻","有事早退","休日出勤","休出代休","振替出勤","振替休暇","深夜出休","特別休暇","出張平日","出張休日",);
+//配列の要素数を取得
+$count_department = count($department)-1;
+$count_type = count($type)-1;
+?>
 
 <!-- フォーム作成 -->
     <form method="POST" action="form.php" >
@@ -19,13 +27,11 @@
       <p>
       部署名：
       <select name="department">
-        <option value="所属チームを選択してください">----</option>
-        <option value="ES1">ES1</option>
-        <option value="ES2">ES2</option>
-        <option value="ES3">ES3</option>
-        <option value="TF1">TF1</option>
-        <option value="TF2">TF2</option>
-        <option value="TF3">TF3</option>
+        <?php
+        for($i = 0; $i <= $count_department; $i++){
+          echo "<option value=".$department[$i].">".$department[$i]."</option>";
+        }
+        ?>
       </select>
       </p>
 <!-- 氏名を入力 -->
@@ -37,22 +43,10 @@
       <p>
       連絡種類：
       <select name="type">
-        <option value="連絡種別を選択してください">----</option>
-        <option value="１日有給">１日有給</option>
-        <option value="時間有給">時間有給</option>
-        <option value="遅刻">遅刻</option>
-        <option value="早退">早退</option>
-        <option value="欠勤">欠勤</option>
-        <option value="有事遅刻">有事遅刻</option>
-        <option value="有事早退">有事早退</option>
-        <option value="休日出勤">休日出勤</option>
-        <option value="休出代休">休出代休</option>
-        <option value="振替出勤">振替出勤</option>
-        <option value="振替休暇">振替休暇</option>
-        <option value="深夜出休">深夜出休</option>
-        <option value="特別休暇">特別休暇</option>
-        <option value="出張平日">出張平日</option>
-        <option value="出張休日">出張休日</option>
+        <?php
+        for($i = 0; $i <= $count_type; $i++){
+          echo "<option value=".$type[$i].">".$type[$i]."</option>";
+                }?>
       </select>
       </p>
 <!-- 取得日を選択 -->
